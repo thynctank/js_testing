@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>JS Testing</title>
+    <!-- <link rel="stylesheet" href="qunit.css" type="text/css" media="screen" title="no title" charset="utf-8"/> -->
+    <!-- <link rel="stylesheet" href="JSSpec.css" type="text/css" media="screen" title="no title" charset="utf-8"/> -->
+    <!-- <link rel="stylesheet" href="screw.css" type="text/css" media="screen" title="no title" charset="utf-8"/> -->
+    <link rel="stylesheet" href="jasmine.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    
+    <style type="text/css" media="screen">
+      .notes {
+        font-family: "Helvetica Neue Light","HelveticaNeue-Light","Helvetica Neue",Calibri,Helvetica,Arial;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <h1 id="qunit-header">QUnit example</h1>
+    <h2 id="qunit-banner"></h2>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div class="notes">
+      <h2>QUnit Notes</h2>
+      <p>Modules can be used to break up tests into overall groups, and test/asyncTest are used to group them into subgroups</p>
+      <p>Individual assertions are made using ok for asserting truth, equals for shallow equality, same for deep equality</p>
+      <p>When testing async, asyncTest function should call stop, then callback on async completion should call start and make any assertions</p>
+    </div>
+    
+    <script src="qunit.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      module("Synchronous Testing");
+      test("Things should happen", function() {
+        expect(2);
+        var x = "Test 1-2-3", y = 29;
+        ok((/^test\w*\s[123-]*$/i).test(x), "Test string looks good");
+        equals(y, 29, "Y value is correct");
+      });
+      
+      test("Other things should happen", function() {
+        expect(1);
+        var z = {one: "1", two: 2, three: {threePointOne: "3.1", threePointTwo: [3,2]}}, checkObj = {};
+        checkObj.one = "1";
+        checkObj.two = 2;
+        checkObj.three = {threePointOne: "3.1"};
+        checkObj.three.threePointTwo = [3,2];
+        same(z, checkObj, "Deep object equality checking");
+      });
+      
+      module("Asynchronous Testing");
+      asyncTest("Callback should fire in X function", function() {
+        function x(str, callback) {
+          console.log(str);
+          if(callback)
+            callback();
+        }
+        
+        stop();
+        x("Testing callback", function() {
+          ok(true, "Callback was run");
+          start();
+        });
+      });
+    </script> -->
+    
+    <!-- <script src="JSSpec.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      describe("Test stuff, but nothing async", {
+        before_all: function() {
+          x = true;
+          y = {one: 1, two: "2", three: {threePointOne: "3.1", threePointTwo: [3,2]}};
+        },
+        before_each: function() {
+          
+        },
+        "Test the truth of something": function() {
+          value_of(x).should_be_true();
+        },
+        "Test the identicality of something": function() {
+          value_of(y.three.threePointOne).should_be("3.1");
+        },
+        "Test contents of an array": function() {
+          value_of(y.three.threePointTwo).should_be([3,2]);
+        },
+        "Test contents of an object": function() {
+          value_of(y.three).should_be({threePointOne: "3.1", threePointTwo: [3,2]});
+        }
+      });
+    </script> -->
+
+    <h1>Jasmine</h1>
+    <script src="jasmine.js" type="text/javascript" charset="utf-8"></script>
+    <script src="TrivialReporter.js" type="text/javascript" charset="utf-8"></script>
+    <script src="consolex.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      describe("Suite of things to test", function() {
+        it("Should test something", function() {
+          var x = true;
+          expect(x).toEqual(true);
+        });
+      });
+      
+      describe("Nested suites", function() {
+        var x = {};
+        
+        beforeEach(function() {
+          x.one = 1;
+          x.two = "2";
+          x.three = {threePointOne: "3.1"};
+          x.three.threePointTwo = [3,2];
+        });
+        
+        describe("First inner suite", function() {
+          it("Should verify equality of something", function() {
+            expect(x.three).toEqual({threePointOne: "3.1", threePointTwo: [3,2]});
+          });
+        });
+        
+        describe("Second inner suite - async", function() {
+          function x(str, callback) {
+            console.log(str);
+            if(callback)
+              callback();
+          }
+          
+          it("Tests the callback is called when running x", function() {
+            var callback = jasmine.createSpy("Callbacker");
+            x("Testing console logging", callback);
+            expect(callback).wasCalled();
+            expect(callback.callCount).toEqual(1);
+            x("Still testing callbacks", callback);
+            expect(callback.callCount).toEqual(2);
+          });
+        });
+      });
+      
+      var jasmineEnv = jasmine.getEnv();
+      jasmineEnv.reporter = new jasmine.TrivialReporter();
+      jasmineEnv.execute();
+    </script>
+  </body>
+</html>
