@@ -134,6 +134,22 @@
         });
       });
       
+      describe("Third master suite", function() {
+        it("Should allow me to mock calls to an existing method", function() {
+          // spyOn(Math, "sqrt").andCallThrough();
+          // spyOn(Math, "sqrt").andReturn(2);
+          spyOn(Math, "sqrt").andCallFake(function(arg) {
+            console.log("Squaring instead of square rooting");
+            return arg * arg;
+          });
+          var root = Math.sqrt(4);
+          expect(root).toEqual(16);
+          var root2 = Math.sqrt(9)
+          expect(root2).toEqual(81);
+          expect(Math.sqrt.callCount).toEqual(2);
+        });
+      });
+      
       var jasmineEnv = jasmine.getEnv();
       jasmineEnv.reporter = new jasmine.TrivialReporter();
       jasmineEnv.execute();
