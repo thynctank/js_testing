@@ -7,7 +7,7 @@
     <!-- <link rel="stylesheet" href="qunit.css" type="text/css" media="screen" title="no title" charset="utf-8"/> -->
     <!-- <link rel="stylesheet" href="JSSpec.css" type="text/css" media="screen" title="no title" charset="utf-8"/> -->
     <!-- <link rel="stylesheet" href="screw.css" type="text/css" media="screen" title="no title" charset="utf-8"/> -->
-    <link rel="stylesheet" href="jasmine.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    <!-- <link rel="stylesheet" href="jasmine.css" type="text/css" media="screen" title="no title" charset="utf-8"/> -->
     
     <style type="text/css" media="screen">
       .notes {
@@ -88,7 +88,7 @@
       });
     </script> -->
 
-    <h1>Jasmine</h1>
+    <!-- <h1>Jasmine</h1>
     <div class="notes">
       <h2>Jasmine Notes</h2>
       <p>describe() calls break tests into suites, it calls break tests into subgroups.</p>
@@ -152,7 +152,7 @@
           });
           var root = Math.sqrt(4);
           expect(root).toEqual(16);
-          var root2 = Math.sqrt(9)
+          var root2 = Math.sqrt(9);
           expect(root2).toEqual(81);
           expect(Math.sqrt.callCount).toEqual(2);
         });
@@ -161,6 +161,54 @@
       var jasmineEnv = jasmine.getEnv();
       jasmineEnv.reporter = new jasmine.TrivialReporter();
       jasmineEnv.execute();
+    </script> -->
+    
+    <h1>JSpec</h1>
+    <div class="notes">
+      <h2>JSpec Notes</h2>
+      <p>describe() is like context, again. it() is like should. expect() is like an assertion.</p>
+      <p>No idea how to test async.</p>
+    </div>
+    <div id="jspec">
+      
+    </div>
+    <script src="jspec.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jspec.timers.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      window.onload = function() {
+        JSpec.describe('With x set to true', function() {
+          before(function() {
+            x = true;
+          });
+
+          it('should be true', function() {
+            expect(x).to(be, true);
+          });
+
+          describe('and y set to 2', function() {
+            before(function() {
+              y = 2;
+            });
+            
+            it("should be greater than 1 and less than 3", function() {
+              expect(y).to(be_greater_than, 1);
+              expect(y).to(be_less_than, 3);
+            });
+          });
+        });
+        
+        function callbacker(callback) {
+          if(callback)
+            callback();
+        }
+        
+        JSpec.describe("Testing async calls", function() {
+          // unclear how to test these....
+        });
+        
+        // JSpec.run({failuresOnly:true}).report();
+        JSpec.run().report();
+      };
     </script>
   </body>
 </html>
