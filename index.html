@@ -89,6 +89,14 @@
     </script> -->
 
     <h1>Jasmine</h1>
+    <div class="notes">
+      <h2>Jasmine Notes</h2>
+      <p>describe() calls break tests into suites, it calls break tests into subgroups.</p>
+      <p>Think describe is like context in Shoulda, it is like should.</p>
+      <p>Individual assertions are made using expect(val).toEqual() for equality, wasCalled() for number of calls.</p>
+      <p>beforeEach() can be used within a describe() to run before each inner describe().</p>
+      <p>Use createSpy() to track async calls, spyOn() to mock responses.</p>
+    </div>
     <script src="jasmine.js" type="text/javascript" charset="utf-8"></script>
     <script src="TrivialReporter.js" type="text/javascript" charset="utf-8"></script>
     <script src="consolex.js" type="text/javascript" charset="utf-8"></script>
