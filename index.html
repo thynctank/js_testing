@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <title>JS Testing</title>
-    <!-- <link rel="stylesheet" href="qunit.css" type="text/css" media="screen" title="no title" charset="utf-8"/> -->
+    <link rel="stylesheet" href="qunit.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
     <!-- <link rel="stylesheet" href="JSSpec.css" type="text/css" media="screen" title="no title" charset="utf-8"/> -->
     <!-- <link rel="stylesheet" href="screw.css" type="text/css" media="screen" title="no title" charset="utf-8"/> -->
     <!-- <link rel="stylesheet" href="jasmine.css" type="text/css" media="screen" title="no title" charset="utf-8"/> -->
@@ -16,7 +16,7 @@
     </style>
   </head>
   <body>
-    <!-- <h1 id="qunit-header">QUnit example</h1>
+    <h1 id="qunit-header">QUnit example</h1>
     <h2 id="qunit-banner"></h2>
     <h2 id="qunit-userAgent"></h2>
     <ol id="qunit-tests"></ol>
@@ -50,7 +50,6 @@
       module("Asynchronous Testing");
       asyncTest("Callback should fire in X function", function() {
         function x(str, callback) {
-          console.log(str);
           if(callback)
             callback();
         }
@@ -61,7 +60,7 @@
           start();
         });
       });
-    </script> -->
+    </script>
     
     <!-- <script src="JSSpec.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
@@ -163,7 +162,7 @@
       jasmineEnv.execute();
     </script> -->
     
-    <h1>JSpec</h1>
+    <!-- <h1>JSpec</h1>
     <div class="notes">
       <h2>JSpec Notes</h2>
       <p>describe() is like context, again. it() is like should. expect() is like an assertion.</p>
@@ -209,6 +208,6 @@
         // JSpec.run({failuresOnly:true}).report();
         JSpec.run().report();
       };
-    </script>
+    </script> -->
   </body>
 </html>
